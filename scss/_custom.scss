@@ -1,0 +1,132 @@
+// Here you can add other styles
+.sidebar {
+  .sidebar-nav, ul.nav {
+    width: $sidebar-width - 16px;
+  }
+}
+.no-padding {
+  padding: 0;
+}
+.btn-right {
+  float: right;
+}
+/// Forms
+.form-error {
+	color: #ad0c0c;
+}
+.btn-lower {
+  margin-top: 2em;
+}
+.middle{
+  text-align: center;
+}
+.right{
+  text-align: right;
+}
+.switch.switch-text.switch-rev-danger .switch-label {
+  background-color: $color-danger;
+}
+.switch-rev-danger > .switch-input:checked ~ .switch-label{
+  background-color: $color-primary;
+}
+.switch.switch-text .switch-label::before{
+  color: white;
+}
+.react-datepicker__input-container{
+  width: 100%;
+}
+.half-width {
+  width: 50%;
+}
+/////////////////
+
+/// Components
+
+// Spinner
+.button-spinner {
+  margin: 0 auto;
+  height: 2em;
+}
+/////////////////
+
+// Typeahead dropdown
+.bootstrap-typeahead {
+  .dropdown-menu {
+    width:100%;
+    padding: 5px 20px;
+  }
+}
+/////////////////
+
+// Pagination
+.pagination {
+  margin: auto;
+  margin-bottom: 2em;
+  margin-left: 2em;
+}
+.page-item {
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  .selected {
+    background-color: #d1d4d7;
+  }
+}
+.hidden {
+  display:none;
+}
+/////////////////
+
+// Users
+.policies-container {
+  border: 1px solid black;
+  label {
+    font-weight: bold;
+  }
+}
+/////////////////
+
+// Patients
+.holders {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 1em;
+}
+/////////////////
+
+// Orders
+.total-value {
+  float: right;
+  padding-right: 10px;
+}
+.status {
+  padding: 5px 10px;
+  font-family: sans-serif;
+  font-size: 110%;
+  font-weight: bold;
+  &.payed,&.confirmed {
+    background-color: $color-success;
+    border-radius: 5px;
+  }
+}
+/////////////////
+
+// Payments
+.payments-total{
+  font-weight: bold;
+}
+.payments-remaining{
+  font-weight: bold;
+  &.positive{
+    td{
+      background-color: $color-success;
+    }
+  }
+  &.negative{
+    td{
+      background-color: $color-danger;
+      color: white;
+    }
+  }
+}
+/////////////////
