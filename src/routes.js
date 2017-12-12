@@ -15,6 +15,9 @@ import Dashboard                                     from './views/Pages/Dashboa
 import Roles                                         from './views/Pages/Roles/';
 import RoleDetail                                    from './views/Pages/Roles/RoleDetail';
 
+import Candidates                                         from './views/Pages/Candidates/';
+import CandidateDetail                                    from './views/Pages/Candidates/CandidateDetail';
+
 
 export default (
   <Router history={browserHistory}>
@@ -30,6 +33,11 @@ export default (
       <Route path="cargos" name="Listar Cargos" onEnter={requireAuth} component={Roles}/>
       <Route path="/cargos/adicionar" name="Adicionar Cargo" onEnter={requireAuth} component={RoleDetail}/>
       <Route path="/cargos/:id" name="Cargo" onEnter={requireAuth} component={RoleDetail}/>
+
+
+      <Route path="candidatos" name="Listar Candidatos" onEnter={requireAuth} component={Candidates}/>
+      <Route path="/candidatos/adicionar" name="Adicionar Candidato" onEnter={requireAuth} component={CandidateDetail}/>
+      <Route path="/candidatos/:id" name="Candidato" onEnter={requireAuth} component={CandidateDetail}/>
     </Route>
 
   </Router>

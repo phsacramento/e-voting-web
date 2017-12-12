@@ -1,0 +1,6 @@
+{
+  "name": "Candidates",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Candidates.js"
+}

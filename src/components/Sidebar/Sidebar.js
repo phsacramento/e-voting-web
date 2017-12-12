@@ -38,6 +38,12 @@ class Sidebar extends Component {
                 <Link to={'/dashboard/cargos'} className="nav-link" activeClassName="active"><i className="icon-people"></i> Cargos</Link>
               </Authorization>
             </li>
+
+            <li className="nav-item">
+              <Authorization roles={Admin}>
+                <Link to={'/dashboard/candidatos'} className="nav-link" activeClassName="active"><i className="icon-user-follow"></i> Candidatos</Link>
+              </Authorization>
+            </li>
             
           </ul>
         </nav>
