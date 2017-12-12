@@ -7,19 +7,24 @@ import ResourcesService                                     from '../../../lib/a
 import FormInput                                            from '../../../components/Common/FormInput';
 import LoadingSpinner                                       from '../../../components/Common/LoadingSpinner';
 import Alert                                                from 'react-s-alert';
+import Select                                               from 'react-select';
+
+// Assets
+import 'react-select/dist/react-select.css';
+
 // Helpers
 import {formRequestSuccess, formRequestError, requestError} from '../../../helpers/Utils';
 
 class CandidateDetail extends Component {
 
   state = {
-    candidate: {name: '', last_name: '', public_name: '', role_id: ''},
+    candidate: {name: '', last_name: '', public_name: '', role_id: '', role: { value: '', label: ''}},
     formErrors: {},
     roles: [],
-    large: false,
     disableSubmit: false,
     submittingForm: false,
-    loaded: false
+    loaded: false,
+    selectedOption: ''
   }
 
   mode = null; 
@@ -31,6 +36,24 @@ class CandidateDetail extends Component {
       evt.preventDefault();
     window.location.href="/dashboard/candidatos/";
   }
+
+  handleChange = (selectedOption) => {
+
+    const candidate         = this.state.candidate;
+    
+    if (typeof selectedOption != 'undefined' && selectedOption) {
+      candidate["role"]       = selectedOption;
+      candidate["role_id"]    = selectedOption.value;
+      console.log(`Selected: ${selectedOption.label}`);
+    }
+
+    
+
+    this.setState({candidate: candidate});
+    
+    
+  }
+
 
 
 
@@ -46,7 +69,7 @@ class CandidateDetail extends Component {
   handleDestroy = (evt) => {
     evt.preventDefault();
     this.service.destroy(this.props.params.id).then(response => {
-      formRequestSuccess('Item removido com sucesso');
+      formRequestSuccess(response, 'Item removido com sucesso');
       this.goBack();
     }).catch(err => {
       requestError(err, "Erro. Não foi possível remover esse item!");
@@ -61,6 +84,7 @@ class CandidateDetail extends Component {
     this.service[method](this.state.candidate).then(candidate => {
       this.setState({ disableSubmit: true })
       formRequestSuccess();
+      console.log(this.state)
     }).catch(err => {
       formRequestError(err, this);
     })
@@ -72,7 +96,7 @@ class CandidateDetail extends Component {
         roles: response.roles,
         loaded: true
       });
-      console.log(this.state)
+      
     }).catch(error => {
       Alert.error(`<p>${error}</p>`, {
           position: 'top',
@@ -86,12 +110,7 @@ class CandidateDetail extends Component {
   componentWillMount() {
     if(!!this.props.params.id){ // We're editing a role
       this.mode = 'edit';
-
-      console.log(this.state)
-      
-      this.loadRoles();    
-  
-
+        
       this.service.get(this.props.params.id).then(candidate => {
         this.setState({
           candidate: candidate,
@@ -134,6 +153,13 @@ class CandidateDetail extends Component {
                   
                   <div className={"form-group" + (this.state.formErrors.role_id ? 'has-danger has-feedback' : '') }>
                     <label htmlFor="role_id">Cargo</label>
+
+                    <Select
+                      name="role_id"
+                      value={this.state.candidate.role.value}
+                      onChange={this.handleChange.bind(this)}
+                      options={this.state.roles}
+                    />
                     
                   </div>
 

@@ -13,6 +13,12 @@ export const CandidateItem = (props) => {
           <Link to={'/candidatos/' + props.id} key={props.id}> {props.public_name}</Link>
         </div>
       </td>
+
+      <td>
+        <div>
+          <div>{props.role_title}</div>
+        </div>
+      </td>
     </tr>
   )
 }
