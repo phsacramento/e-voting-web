@@ -2,10 +2,10 @@ import React, { Component }                     from 'react';
 import { Link }                                 from 'react-router';
 
 // Services
-import ResourcesService                         from '../../../lib/api/ResourcesService'
+import ResourcesService                         from '../../../lib/api/ResourcesService';
 
 // Components
-import {RoleList}                               from './RoleList'
+import {RoleList}                               from './RoleList';
 import LoadingSpinner                           from '../../../components/Common/LoadingSpinner';
 import Pagination                               from '../../../components/Common/Pagination';
 import Alert                                    from 'react-s-alert';

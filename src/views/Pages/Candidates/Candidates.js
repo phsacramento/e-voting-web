@@ -2,7 +2,7 @@ import React, { Component }                     from 'react';
 import { Link }                                 from 'react-router';
 
 // Services
-import ResourcesService                         from '../../../lib/api/ResourcesService'
+import ResourcesService                         from '../../../lib/api/ResourcesService';
 
 // Components
 import {CandidateList}                          from './CandidateList'

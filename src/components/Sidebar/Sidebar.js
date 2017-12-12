@@ -27,7 +27,7 @@ class Sidebar extends Component {
               Dashboard
             </li>
             <li className="nav-item">
-              <Link to={'/dashboard'} className="nav-link" activeClassName="actives"><i className="icon-speedometer"></i> Início</Link>
+              <Link to={'/dashboard'} className="nav-link" activeClassName="actives"><i className="icon-speedometer"></i> Votações</Link>
             </li>
             <li className="nav-title">
               Navegação

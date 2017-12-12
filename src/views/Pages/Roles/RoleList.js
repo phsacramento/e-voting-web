@@ -1,5 +1,5 @@
 import React                              from 'react'
-import {RoleItem}                    from './RoleItem'
+import {RoleItem}                         from './RoleItem'
 import PropTypes                          from 'prop-types';
 
 export const RoleList = (props) => {

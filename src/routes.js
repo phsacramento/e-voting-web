@@ -14,9 +14,10 @@ import Dashboard                                     from './views/Pages/Dashboa
 
 import Roles                                         from './views/Pages/Roles/';
 import RoleDetail                                    from './views/Pages/Roles/RoleDetail';
+import Votation                                      from './views/Pages/Votation/Votation';
 
-import Candidates                                         from './views/Pages/Candidates/';
-import CandidateDetail                                    from './views/Pages/Candidates/CandidateDetail';
+import Candidates                                    from './views/Pages/Candidates/';
+import CandidateDetail                               from './views/Pages/Candidates/CandidateDetail';
 
 
 export default (
@@ -38,6 +39,8 @@ export default (
       <Route path="candidatos" name="Listar Candidatos" onEnter={requireAuth} component={Candidates}/>
       <Route path="/candidatos/adicionar" name="Adicionar Candidato" onEnter={requireAuth} component={CandidateDetail}/>
       <Route path="/candidatos/:id" name="Candidato" onEnter={requireAuth} component={CandidateDetail}/>
+
+      <Route path="/votar/:id" name="Votar no Cargo" onEnter={requireAuth} component={Votation}/>
     </Route>
 
   </Router>

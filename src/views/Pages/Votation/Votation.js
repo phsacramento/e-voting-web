@@ -5,15 +5,15 @@ import { Link }                                 from 'react-router';
 import ResourcesService                         from '../../../lib/api/ResourcesService';
 
 // Components
-import {RoleList}                               from './RoleList';
+import {CandidateList}                          from './CandidateList';
 import LoadingSpinner                           from '../../../components/Common/LoadingSpinner';
 import Pagination                               from '../../../components/Common/Pagination';
 import Alert                                    from 'react-s-alert';
 
-class Dashboard extends Component {
+class Votation extends Component {
 
 	state = {
-    roles: [],
+    candidates: [],
     large: false,
     loaded: false,
     page: 1,
@@ -22,32 +22,32 @@ class Dashboard extends Component {
     query: null
   }
 
-  serv = new ResourcesService('roles');
+  serv = new ResourcesService('candidates');
 
   prevPage = () => {
     const page = this.state.page - 1;
 
     this.setState({page: page, loaded: false});
-    this.loadRoles(page, this.state.query);
+    this.loadCandidates(page, this.state.query);
   }
   nextPage = () => {
     const page = this.state.page + 1;
     
     this.setState({page: page, loaded: false});
-    this.loadRoles(page, this.state.query);
+    this.loadCandidates(page, this.state.query);
   };
   setPage = (evt) => {
     evt.preventDefault();
     const page = Number(evt.target.name);
 
     this.setState({page: page, loaded: false});
-    this.loadRoles(page, this.state.query);
+    this.loadCandidates(page, this.state.query);
   };
 
-  loadRoles = (page = 1, query = null) => {
+  loadCandidates = (page = 1, query = null) => {
     this.serv.load(page, query).then(response => {
       this.setState({
-        roles: response.roles,
+        candidates: response.candidates,
         total: response.total,
         totalPages: response.total / 10,
         loaded: true
@@ -63,7 +63,7 @@ class Dashboard extends Component {
   };
 
   componentWillMount() {
-    this.loadRoles();
+    this.loadCandidates();
   }
 
   render() {
@@ -74,12 +74,12 @@ class Dashboard extends Component {
         	<div className="col-md-12">
         	  <div className="card">
         	    <div className="card-header">
-        	      Cargos disponíveis para votação
+        	      Cargos disponíveis para votação nesse cargo
         	    </div>
         	    <div className="card-block">
         	      
                   
-                  {this.state.loaded ? <RoleList handleClick={this.handleClick} roles={this.state.roles} /> : <LoadingSpinner/>}
+                  {this.state.loaded ? <CandidateList handleClick={this.handleClick} candidates={this.state.candidates} /> : <LoadingSpinner/>}
 
                 
         	    </div>
@@ -92,4 +92,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default Votation;
