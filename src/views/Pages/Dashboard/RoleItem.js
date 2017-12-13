@@ -11,7 +11,7 @@ export const RoleItem = (props) => {
   )
 
   return (
-    <div className="col-md-4">
+    <div className="col-md-4" id={props.id}>
       <div className="card">
         <div className="card-header">
           {props.title}

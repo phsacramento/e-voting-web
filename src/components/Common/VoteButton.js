@@ -18,30 +18,9 @@ const apiUrl = `${Constants.SERVER_URL}/${Constants.API_URL}`;
 
 const VoteButton = ({candidate_id, is_voted_by_current_userm, role_id}) => {
 
-	let user_id = null;
-
-	Profile.getUser(sessionStorage.jwt).then(currentUser => {
-		user_id = currentUser.id;
-	  sessionStorage.user_id = currentUser.id;
-	});
-
-	axios.get(`${apiUrl}`+ '/votes/check/', {
-    params: {
-      role_id: role_id,
-      user_id: user_id
-    }
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-
 	const handleSubmit = (evt) => {
 		axios.post(`${apiUrl}`+ '/votes', {
-	    candidate_id: candidate_id,
-	    user_id:  user_id
+	    candidate_id: candidate_id
 	  })
 	  .then(function (response) {
 	    formRequestSuccess('Voto computado com sucesso!');
@@ -56,16 +35,19 @@ const VoteButton = ({candidate_id, is_voted_by_current_userm, role_id}) => {
   	 <button type="button" onClick={handleSubmit} className="btn btn-primary">Votar</button>
   	
 	)
+	
+
 
   return (
+		
     <div>
-    	
+    	{ true ? button : "Você já votou nesse cargo!"}
     </div>
   );
 };
 
 VoteButton.propTypes = {
-  // candidate: PropTypes.object.isRequired
+
 };
 
 export default VoteButton;

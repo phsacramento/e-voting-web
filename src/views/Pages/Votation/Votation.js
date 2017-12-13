@@ -44,7 +44,7 @@ class Votation extends Component {
     this.loadCandidates(page, this.state.query);
   };
 
-  loadCandidates = (page = 1, query = null) => {
+  loadCandidates = (page = 1, query = {role_id: this.props.params.id}) => {
     this.serv.load(page, query).then(response => {
       this.setState({
         candidates: response.candidates,
@@ -79,7 +79,7 @@ class Votation extends Component {
         	    <div className="card-block">
         	      
                   
-                  {this.state.loaded ? <CandidateList handleClick={this.handleClick} candidates={this.state.candidates} /> : <LoadingSpinner/>}
+                  {this.state.loaded ? <CandidateList handleClick={this.handleClick} role={this.props.params.id} candidates={this.state.candidates} /> : <LoadingSpinner/>}
 
                 
         	    </div>
