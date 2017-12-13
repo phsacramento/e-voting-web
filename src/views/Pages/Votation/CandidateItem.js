@@ -23,6 +23,12 @@ export const CandidateItem = (props) => {
     }
   }
 
+  const goBack = (evt) => {
+    if(!!evt)
+      evt.preventDefault();
+    window.location.href="/dashboard/";
+  }
+
   const handleSubmit = (evt) => {
     
     serv[method](vote).then(vote => {
@@ -35,7 +41,7 @@ export const CandidateItem = (props) => {
           timeout: 2000
       });
       
-      setTimeout(function() { window.location.href="/dashboard"; }, 1000);
+      setTimeout(function() { goBack() }, 1000);
   
       
       
@@ -47,6 +53,8 @@ export const CandidateItem = (props) => {
           beep: false,
           timeout: 5000
       });
+
+       setTimeout(function() { goBack() }, 1000);
     })
   }
 
