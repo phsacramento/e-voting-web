@@ -34,14 +34,7 @@ export const CandidateItem = (props) => {
     serv[method](vote).then(vote => {
       const msg = 'Voto computado com sucesso!';
 
-      Alert.success(`<p>${msg}</p>`, {
-          position: 'top',
-          effect: 'stackslide',
-          beep: false,
-          timeout: 2000
-      });
-      
-      setTimeout(function() { goBack() }, 1000);
+      formRequestSuccess(msg);
   
       
       
@@ -54,7 +47,6 @@ export const CandidateItem = (props) => {
           timeout: 5000
       });
 
-       setTimeout(function() { goBack() }, 1000);
     })
   }
 

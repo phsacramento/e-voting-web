@@ -3,9 +3,10 @@ import {append}                               from '../../helpers/Utils';
 
 const networkErrorMsg = "Falha na comunicação com o servidor: você está conectado à Internet?";
 
-const axios = require('axios');
+// const axios = require('axios');
 
 function parseJSON(response) {
+
   return new Promise((resolve, reject) => response.json()
     .then((json) => resolve({
       status: response.status,
@@ -138,30 +139,30 @@ class ResourcesService {
   destroy(id) {
     let headers = this._getHeaders();
 
-    // return new Promise((resolve, reject) => {
-    //   fetch(`${this.baseUrl}/${id}`, {
-    //     method: 'DELETE',
-    //     headers: headers
-    //   })
-    //   .then(parseJSON)
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       return resolve(response.json);
-    //     } else {
-    //       return reject(response.json.errors);
-    //     }
-    //   })
-    //   .catch((error) => reject(networkErrorMsg));
-    // });
-
     return new Promise((resolve, reject) => {
-      axios.delete(`${this.baseUrl}/${id}`, {id: id}, {headers: headers})
-        .then((response) => {
-          resolve(response);
-        }).catch((error) => {
-          reject(networkErrorMsg);
-        });
+      fetch(`${this.baseUrl}/${id}`, {
+        method: 'DELETE',
+        headers: headers
+      })
+      .then(parseJSON)
+      .then((response) => {
+        if (response.ok) {
+          return resolve(response.json);
+        } else {
+          return reject(response.json.errors);
+        }
+      })
+      .catch((error) => reject(networkErrorMsg));
     });
+
+    // return new Promise((resolve, reject) => {
+    //   axios.delete(`${this.baseUrl}/${id}`, {id: id}, {headers: headers})
+    //     .then((response) => {
+    //       resolve(response);
+    //     }).catch((error) => {
+    //       reject(networkErrorMsg);
+    //     });
+    // });
   }
 
   _getURLParams(page = 1, query = {}){
