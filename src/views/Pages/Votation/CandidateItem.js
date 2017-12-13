@@ -35,7 +35,7 @@ export const CandidateItem = (props) => {
           timeout: 2000
       });
       
-      setTimeout(function() { window.location.reload() }, 1000);
+      setTimeout(function() { window.location.href="/dashboard"; }, 1000);
   
       
       
